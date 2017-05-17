@@ -1,0 +1,17 @@
+apns2==0.3.0
+asn1crypto==0.22.0
+cffi==1.10.0
+cryptography==1.8.1
+Django==1.11.1
+django-push-notifications==1.5.0
+h2==2.6.2
+hpack==3.0.0
+hyper==0.7.0
+hyperframe==3.2.0
+idna==2.5
+packaging==16.8
+pycparser==2.17
+PyJWT==1.5.0
+pyparsing==2.2.0
+pytz==2017.2
+six==1.10.0
