@@ -8,6 +8,7 @@ from django.dispatch import receiver
 # from django.shortcuts import get_object_or_404
 # from django.forms.models import model_to_dict
 
+
 # csrf_exempt decorator is used to disable CSRF protection for this view
 @csrf_exempt
 def index(request):
@@ -19,10 +20,12 @@ def index(request):
         if token not in registered_devices:
             # create new entry in the DB
             GCMDevice.objects.create(registration_id=token, cloud_message_type="FCM")
-    return render(request, 'devices/index.html')
+    context = {'data_context': 'This text is rendered from the devices template'}
+    return render(request, 'devices/index.html', context)
+
 
 # observer that tracks is the Video model has new entries
-# in the case of a new entry all the registered devices are getting notified
+# in the case of a new entry or update  all the registered devices are getting notified
 @receiver(post_save, sender=Video)
 def observe_video(sender, **kwargs):
     registered_devices = [device['registration_id'] for device in GCMDevice.objects.values('registration_id')]
