@@ -13,10 +13,8 @@ def index(request):
 def video_form(request):
     # if this is a POST request we process the form data
     if request.method == 'POST':
-        print('is a form')
         # create a form instance and populate it with data from the request:
         form = VideoForm(request.POST)
-        print('the data from the form', form)
         # check if  it's valid:
         if form.is_valid():
             Video.objects.update_or_create(video_id=form.cleaned_data["video_id"],

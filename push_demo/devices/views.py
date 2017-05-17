@@ -16,18 +16,17 @@ def index(request):
     if request.method == 'POST':
         token = request.POST['token']
         device = request.POST['device']
-        print(request.POST)
         # list of all the registered devices
         if device == DEVICE_TYPE['APNS']:
             registered_devices_apns = APNSDevice.objects.values_list('registration_id', flat=True)
             if token not in registered_devices_apns:
                 # create new entry in the DB
-                APNSDevice.objects.create(registration_id=token, device_id=device)
+                APNSDevice.objects.create(registration_id=token, name=device)
         elif device == DEVICE_TYPE['FCM']:
             registered_devices_fcm = GCMDevice.objects.values_list('registration_id', flat=True)
             if token not in registered_devices_fcm:
                 # create new entry in the DB
-                GCMDevice.objects.create(registration_id=token, device_id=device, cloud_message_type="FCM")
+                GCMDevice.objects.create(registration_id=token, name=device, cloud_message_type="FCM")
 
     context = {'data_context': 'This text is rendered from the devices template'}
     return render(request, 'devices/index.html', context)
