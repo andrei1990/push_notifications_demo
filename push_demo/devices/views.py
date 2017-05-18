@@ -27,8 +27,8 @@ def index(request):
             if token not in registered_devices_fcm:
                 # create new entry in the DB
                 GCMDevice.objects.create(registration_id=token, name=device, cloud_message_type="FCM")
-
-    context = {'data_context': 'This text is rendered from the devices template'}
+    context_data = list(map(lambda x: x[0:10],  GCMDevice.objects.values_list('registration_id', flat=True)))
+    context = {'devices_list': context_data}
     return render(request, 'devices/index.html', context)
 
 
