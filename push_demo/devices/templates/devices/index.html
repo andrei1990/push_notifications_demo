@@ -1,0 +1,11 @@
+<h1>Hello from the Devices View :)</h1>
+{% if devices_list %}
+<p>The registration ID's of the device: <p>
+    <ul>
+    {% for device in devices_list %}
+        <li><b>{{ device }}</b></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No devices are registered yet</p>
+{% endif %}

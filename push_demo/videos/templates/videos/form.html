@@ -1,0 +1,8 @@
+<h1>Form for creating a video</h1>
+<h4>When the changes are saved, the registered devices will get a notification</h4>
+
+<form action="/videos/video_form/" method="post">
+    {% csrf_token %}
+     {{ form }}
+    <button type="submit" style="background-color: #46c6ff">Create Video</button>
+</form>
